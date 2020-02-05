@@ -1,0 +1,6 @@
+﻿  DelayedTransmissionQueue.cpp
+  main.cpp
+C:\Users\Rasmus\source\repos\Control robot\Control robot\main.cpp(115,26): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Rasmus\source\repos\Control robot\Control robot\main.cpp(116,26): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  Control robot.vcxproj -> C:\Users\Rasmus\source\repos\Control robot\x64\Debug\Control robot.exe

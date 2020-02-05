@@ -7,6 +7,7 @@
 #include "Controller.h"
 #include "UDPSocket.h"
 #include <chrono>
+#include "DelayedTransmissionQueue.h"
 //ports: controller, 20001 | gstreamer, 20002 | ping_loop, 20003
 #define ROUND_OF(f, c) (((float)((int)((f) * (c))) / (c)))
 
@@ -76,20 +77,23 @@ void poll_controller_input(int controller_index, bool &running, Address robot_so
 {
     std::unordered_map<std::string, float> power;
     std::unique_ptr<Controller> Player(new Controller(controller_index));
-    
-    std::unique_ptr<UDPSocket> controller_socket(new UDPSocket(SOCK_DGRAM));
+    double delay_s = 0.0;
+    //std::unique_ptr<UDPSocket> controller_socket(new UDPSocket(SOCK_DGRAM));
+    DelayedTransmissionQueue controller_queue(0.0, robot_socket);
     while (running)
     {
         if (Player->is_connected())
         {
             if (Player->get_controller_status().Gamepad.wButtons & XINPUT_GAMEPAD_A)
             {
-                std::cout << "A was pressed" << std::endl;
+                delay_s+= 0.01;//seconds, 0.01s = 10ms
+                std::cout << "A was pressed" << delay_s <<" is new delay"<< std::endl;
+                controller_queue.set_delay(delay_s);
             }
 
             if (Player->get_controller_status().Gamepad.wButtons & XINPUT_GAMEPAD_B)
             {
-                std::cout << "B was pressed" << std::endl;
+                std::cout << "B was pressed" << delay_s << " is the delay" << std::endl;
             }
 
             if (Player->get_controller_status().Gamepad.wButtons & XINPUT_GAMEPAD_X)
@@ -108,15 +112,18 @@ void poll_controller_input(int controller_index, bool &running, Address robot_so
             }
             //std::cout << Player->get_controller_status().Gamepad.sThumbLY << std::endl; //left thumb stick y-axis, ranges from -32000 to 32000 in value
             //std::cout << Player->get_controller_status().Gamepad.sThumbRY << std::endl; //right thumb stick y-axis, ranges from -32000 to 32000 in value
-            power["r"] = max( min(ROUND_OF(float(Player->get_controller_status().Gamepad.sThumbRY / 32000.0) , 100) , 1.00), -1.00);
-            power["l"] = max( min(ROUND_OF(float(Player->get_controller_status().Gamepad.sThumbLY / 32000.0) , 100) , 1.00), -1.00);
+            power["r"] = max( min(ROUND_OF(float(Player->get_controller_status().Gamepad.sThumbRY / 32000.0) , 100) , 1.00), -1.00); //clamp result between [-1 , 1]
+            power["l"] = max( min(ROUND_OF(float(Player->get_controller_status().Gamepad.sThumbLY / 32000.0) , 100) , 1.00), -1.00); //same here because the motors can only handle input in that range since it operates using pwm signals
             
             std::string outmsg = umap_to_json(power);
             
             //std::cout << outmsg << std::endl;
-
-            controller_socket->sendTo(outmsg, robot_socket);
-            std::this_thread::sleep_for(std::chrono::milliseconds(20));
+            controller_queue.enqueue(outmsg);
+            bool sent = controller_queue.transmitt();
+            if(sent)
+                std::cout <<"Message on the way... "<< std::endl;
+            //controller_socket->sendTo(outmsg, robot_socket);
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
 
         }
         else
@@ -132,6 +139,7 @@ void poll_controller_input(int controller_index, bool &running, Address robot_so
 
 int main(int argc, char* argv[])
 {
+    
     Address rpi = { "192.168.254.141", 20001 };
     bool running = true;
     std::thread controller_thread(poll_controller_input, 0, std::ref(running), rpi);
@@ -139,6 +147,7 @@ int main(int argc, char* argv[])
     rpi.port += 2;
     std::thread ping_thread(ping_loop, std::ref(running), rpi);
     //ping_thread.detach();
+    
     gstream_method(argc, argv);
     running = false;
     
