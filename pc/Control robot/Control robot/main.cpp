@@ -148,7 +148,7 @@ int main(int argc, char* argv[])
     std::thread ping_thread(ping_loop, std::ref(running), rpi);
     //ping_thread.detach();
     
-    gstream_method(argc, argv);
+    gstream_method(argc, argv); //blocking in main loop. when stream ends, rest of the threads are closed.
     running = false;
     
 

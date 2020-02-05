@@ -42,5 +42,5 @@ DelayedTransmissionQueue::~DelayedTransmissionQueue()
 	lil_sock->close();
 	while(!messages_to_send.empty())
 		messages_to_send.pop();
-	
+	delete lil_sock;
 }
