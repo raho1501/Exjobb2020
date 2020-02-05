@@ -5,6 +5,7 @@ import RPi.GPIO as GPIO
 from threading import Thread
 import subprocess
 import signal
+import os
 from adafruit_motorkit import MotorKit
 localIP     = "0.0.0.0"
 localPort   = 20001
@@ -48,14 +49,16 @@ def pingresp():
 
     
 def main():
-
+    print("niceness: ", os.nice(0))
+    os.nice(-10)
+    print("new niceness: ", os.nice(0))
     while(True):
         try:
             bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
             message = bytesAddressPair[0]
             address = bytesAddressPair[1]
-            clientMsg = "Message from Client:{}".format(message)
-            clientIP  = "Client IP Address:{}".format(address)
+            #clientMsg = "Message from Client:{}".format(message)
+            #clientIP  = "Client IP Address:{}".format(address)
             #print(clientMsg)
             #print(message.decode())
             #print(clientIP)
@@ -74,7 +77,7 @@ def main():
     process.send_signal(signal.SIGINT)# send Ctrl-C signal
     stdout, stderr = process.communicate()
     print( )
-    print("sent sigint to gstreamer", stderr)
+    print("sent sigint to gstreamer: ", stderr.decode() + ";" + stdout.decode())
     motors.terminate()
     print("engines stopped")
     UDPServerSocket.close()

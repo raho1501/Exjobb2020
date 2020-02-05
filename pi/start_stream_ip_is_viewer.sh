@@ -1,1 +1,1 @@
-gst-launch-1.0 v4l2src !  video/x-raw,width=1280,height=720 !  x264enc tune=zerolatency byte-stream=true  bitrate=3500 threads=3 !  h264parse config-interval=1 !  rtph264pay ! udpsink host=192.168.254.170 port=20002
+gst-launch-1.0 v4l2src !  video/x-raw,width=640,height=480,framerate=60/1 !  x264enc tune=zerolatency byte-stream=true  bitrate=3000 threads=2 !  h264parse config-interval=1 !  rtph264pay ! udpsink host=192.168.254.170 port=20002
