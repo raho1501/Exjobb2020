@@ -20,6 +20,6 @@ private:
 	double delay;
 	UDPSocket* lil_sock;
 	Address socket_address;
-	std::queue<std::pair<std::string, std::chrono::high_resolution_clock::time_point>> messages_to_send;
+	std::queue<std::pair<std::string, std::chrono::high_resolution_clock::time_point>> messages_to_send; //high_resolution_clock is fine on windows since its cast to steady_clock
 };
 

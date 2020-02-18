@@ -4,13 +4,30 @@
 #include <memory>
 #include <iostream>
 #include <unordered_map>
+#include <mutex>
 #include "Controller.h"
 #include "UDPSocket.h"
 #include <chrono>
 #include "DelayedTransmissionQueue.h"
+
+#include "thread_loop_functions.h"
 //ports: controller, 20001 | gstreamer, 20002 | ping_loop, 20003
 #define ROUND_OF(f, c) (((float)((int)((f) * (c))) / (c)))
 
+void netcat_stream_receiver(bool &running)
+{
+    /*
+    FILE* pPipe;
+    pPipe = _popen("c:\\Users\\Rasmus\\Desktop\\netcat-1.11\\nc64.exe -L -p 20002 | c:\\Users\\Rasmus\\Desktop\\mplayer-x86_64\\mplayer.exe -fps 200 -demuxer h264es -", "rt");
+    if (pPipe == NULL)
+    {
+        running = false;
+    }
+    */
+    std::system("c:\\Users\\Rasmus\\Desktop\\netcat-1.11\\nc64.exe -l -p 20002 | c:\\Users\\Rasmus\\Desktop\\mplayer-x86_64\\mplayer.exe -fps 200 -demuxer h264es -noidle -");
+    std::cout << "stream over...\n\r cleaning up streaming elements..." << std::endl;
+    
+}
 
 void gstream_method(int argc, char* argv[])
 {
@@ -41,102 +58,6 @@ void gstream_method(int argc, char* argv[])
     gst_object_unref(pipeline);
 }
 
-void ping_loop(bool &running, Address robot_socket)
-{
-    std::unique_ptr<UDPSocket> ping_socket(new UDPSocket(SOCK_DGRAM));
-    char msg[1024];
-    while (running)
-    {
-        std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
-        ping_socket->sendTo("ping", robot_socket);
-        int resp = ping_socket->receiveFrom(msg, 1024, robot_socket);
-        std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
-        //printf(msg);
-        for (int i = 0; i < resp; i++)
-            std::cout << msg[i];
-        std::chrono::duration<double> time_span = std::chrono::duration_cast<std::chrono::duration<double>>(t2 - t1);
-        std::cout << "  " << time_span.count() * 1000.0 << " milliseconds" << std::endl;
-        std::this_thread::sleep_for(std::chrono::milliseconds(5000));
-        
-    }
-}
-
-std::string umap_to_json(std::unordered_map<std::string, float> power) {
-    std::string outmsg = "{";
-    for (const auto& p : power) {
-        outmsg.append('"' + p.first + '"' + ':' + std::to_string(p.second) + ",");
-    }
-    outmsg.erase(outmsg.end() - 1);
-    outmsg.erase(outmsg.end() - 1);
-    outmsg.append("}");
-    //std::cout << "Length of message: " << std::endl << outmsg.size() << std::endl << std::endl;
-    return outmsg;
-}
-
-void poll_controller_input(int controller_index, bool &running, Address robot_socket)
-{
-    std::unordered_map<std::string, float> power;
-    std::unique_ptr<Controller> Player(new Controller(controller_index));
-    double delay_s = 0.0;
-    //std::unique_ptr<UDPSocket> controller_socket(new UDPSocket(SOCK_DGRAM));
-    DelayedTransmissionQueue controller_queue(0.0, robot_socket);
-    while (running)
-    {
-        if (Player->is_connected())
-        {
-            if (Player->get_controller_status().Gamepad.wButtons & XINPUT_GAMEPAD_A)
-            {
-                delay_s+= 0.01;//seconds, 0.01s = 10ms
-                std::cout << "A was pressed" << delay_s <<" is new delay"<< std::endl;
-                controller_queue.set_delay(delay_s);
-            }
-
-            if (Player->get_controller_status().Gamepad.wButtons & XINPUT_GAMEPAD_B)
-            {
-                std::cout << "B was pressed" << delay_s << " is the delay" << std::endl;
-            }
-
-            if (Player->get_controller_status().Gamepad.wButtons & XINPUT_GAMEPAD_X)
-            {
-                std::cout << "X was pressed" << std::endl;
-            }
-
-            if (Player->get_controller_status().Gamepad.wButtons & XINPUT_GAMEPAD_Y)
-            {
-                std::cout << "Y was pressed" << std::endl;
-            }
-
-            if (Player->get_controller_status().Gamepad.wButtons & XINPUT_GAMEPAD_BACK)
-            {
-                break;
-            }
-            //std::cout << Player->get_controller_status().Gamepad.sThumbLY << std::endl; //left thumb stick y-axis, ranges from -32000 to 32000 in value
-            //std::cout << Player->get_controller_status().Gamepad.sThumbRY << std::endl; //right thumb stick y-axis, ranges from -32000 to 32000 in value
-            power["r"] = max( min(ROUND_OF(float(Player->get_controller_status().Gamepad.sThumbRY / 32000.0) , 100) , 1.00), -1.00); //clamp result between [-1 , 1]
-            power["l"] = max( min(ROUND_OF(float(Player->get_controller_status().Gamepad.sThumbLY / 32000.0) , 100) , 1.00), -1.00); //same here because the motors can only handle input in that range since it operates using pwm signals
-            
-            std::string outmsg = umap_to_json(power);
-            
-            //std::cout << outmsg << std::endl;
-            controller_queue.enqueue(outmsg);
-            bool sent = controller_queue.transmitt();
-            if(sent)
-                std::cout <<"Message on the way... "<< std::endl;
-            //controller_socket->sendTo(outmsg, robot_socket);
-            std::this_thread::sleep_for(std::chrono::milliseconds(1));
-
-        }
-        else
-        {
-            std::cout << "\n\tERROR! PLAYER - XBOX 360 Controller Not Found!\n";
-            std::cout << "Press Any Key To Exit.";
-            std::cin.get();
-            break;
-        }
-    }
-
-}
-
 int main(int argc, char* argv[])
 {
     
@@ -147,8 +68,8 @@ int main(int argc, char* argv[])
     rpi.port += 2;
     std::thread ping_thread(ping_loop, std::ref(running), rpi);
     //ping_thread.detach();
-    
-    gstream_method(argc, argv); //blocking in main loop. when stream ends, rest of the threads are closed.
+    netcat_stream_receiver(running);
+    //gstream_method(argc, argv); //blocking in main loop. when stream ends, rest of the threads are closed.
     running = false;
     
 
