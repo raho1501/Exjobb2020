@@ -14,6 +14,7 @@ public:
 	void enqueue(std::string outgoing_message); //add messages to send
 	bool transmitt();
 	void set_delay(double new_delay);//seconds
+	void clear_queue();
 	~DelayedTransmissionQueue();
 private:
 	bool check_if_ready();

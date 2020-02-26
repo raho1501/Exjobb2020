@@ -15,6 +15,11 @@ UDPSocket::UDPSocket(int type)
 	{
 		throw std::string("creating socket failed: %d\n", WSAGetLastError());
 	}
+	DWORD timeout = 1000;
+	if (setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (char*)&timeout, sizeof(timeout)) < 0)
+	{
+		throw std::string("Error setting socket timeout.");
+	}
 }
 UDPSocket::UDPSocket(SOCKET s)
 {

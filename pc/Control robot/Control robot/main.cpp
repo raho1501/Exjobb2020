@@ -24,10 +24,11 @@ void netcat_stream_receiver(bool &running)
         running = false;
     }
     */
-    std::system("c:\\Users\\Rasmus\\Desktop\\netcat-1.11\\nc64.exe -l -p 20002 | c:\\Users\\Rasmus\\Desktop\\mplayer-x86_64\\mplayer.exe -fps 200 -demuxer h264es -noidle -");
+    std::system("c:\\Users\\Rasmus\\Desktop\\netcat-1.11\\nc64.exe -l -p 20002 | c:\\Users\\Rasmus\\Desktop\\mplayer-x86_64\\mplayer.exe -fps 200 -demuxer h264es -noidle -nojoystick -quiet -");
     std::cout << "stream over...\n\r cleaning up streaming elements..." << std::endl;
-    
+    running = false;
 }
+
 
 void gstream_method(int argc, char* argv[])
 {
@@ -61,20 +62,22 @@ void gstream_method(int argc, char* argv[])
 int main(int argc, char* argv[])
 {
     
-    Address rpi = { "192.168.254.141", 20001 };
+    Address rpi = { "192.168.254.189", 20003 };
     bool running = true;
-    std::thread controller_thread(poll_controller_input, 0, std::ref(running), rpi);
-    //controller_thread.detach();
-    rpi.port += 2;
     std::thread ping_thread(ping_loop, std::ref(running), rpi);
+    //std::thread controller_thread(poll_controller_input, 0, std::ref(running), rpi);
+    //controller_thread.detach();
+    rpi.port -= 2;
     //ping_thread.detach();
-    netcat_stream_receiver(running);
+    std::thread video_thread(netcat_stream_receiver, std::ref(running));
+    video_thread.detach();
+    poll_controller_input(0, running, rpi);
     //gstream_method(argc, argv); //blocking in main loop. when stream ends, rest of the threads are closed.
     running = false;
     
 
     std::this_thread::sleep_for(std::chrono::seconds(1));
-    controller_thread.join();
+    //controller_thread.join();
     ping_thread.join();
     std::cout << "Done..." << std::endl;
     return 0;
