@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PSNR_calc", "PSNR_calc\PSNR_calc.pyproj", "{914E915A-9504-4119-B79E-AAF76BDC6617}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PSNR_plot", "PSNR_plot\PSNR_plot.pyproj", "{4C301504-E2BC-4F1E-82E4-D0332E86E923}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{914E915A-9504-4119-B79E-AAF76BDC6617}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{914E915A-9504-4119-B79E-AAF76BDC6617}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C301504-E2BC-4F1E-82E4-D0332E86E923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C301504-E2BC-4F1E-82E4-D0332E86E923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F47818BD-C3C6-4A8B-875C-3439F389D8A0}
+	EndGlobalSection
+EndGlobal

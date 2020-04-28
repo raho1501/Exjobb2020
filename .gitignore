@@ -1,3 +1,7 @@
-
+*.mp4
 *.ipch
+*/.vs/*
 *.vs/*
+*.xlsx
+*.csv
+*.txt

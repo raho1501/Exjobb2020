@@ -24,7 +24,7 @@ void netcat_stream_receiver(bool &running)
         running = false;
     }
     */
-    std::system("c:\\Users\\Rasmus\\Desktop\\netcat-1.11\\nc64.exe -l -p 20002 | c:\\Users\\Rasmus\\Desktop\\mplayer-x86_64\\mplayer.exe -fps 200 -demuxer h264es -noidle -nojoystick -quiet -");
+    std::system(".\\netcat-1.11\\nc64.exe -l -p 20002 | .\\mplayer-x86_64\\mplayer.exe -fps 200 -demuxer h264es -noidle -nojoystick -quiet -");
     std::cout << "stream over...\n\r cleaning up streaming elements..." << std::endl;
     running = false;
 }

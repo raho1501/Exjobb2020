@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "framedelay", "framedelay\framedelay.pyproj", "{E2FD1BD2-666E-446C-8CAA-837A28E882BB}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "framespliter", "framespliter\framespliter.pyproj", "{A695974D-E714-405F-8760-2CBD0B5C6315}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "videomerger", "videomerger\videomerger.pyproj", "{C9FD74B7-1A7B-4020-B9B6-2E95AEF042D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E2FD1BD2-666E-446C-8CAA-837A28E882BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2FD1BD2-666E-446C-8CAA-837A28E882BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A695974D-E714-405F-8760-2CBD0B5C6315}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A695974D-E714-405F-8760-2CBD0B5C6315}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9FD74B7-1A7B-4020-B9B6-2E95AEF042D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9FD74B7-1A7B-4020-B9B6-2E95AEF042D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {46A17515-756B-4ACE-A2C9-66BF667C7768}
+	EndGlobalSection
+EndGlobal

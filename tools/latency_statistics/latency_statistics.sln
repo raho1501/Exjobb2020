@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "latency_statistics", "latency_statistics\latency_statistics.pyproj", "{DEB7D9DD-AAE0-4F70-97FA-C80C81CDE8B3}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "testruns_3dplot", "testruns_3dplot\testruns_3dplot.pyproj", "{D3C05770-5E0F-4450-A316-4E34FBB86B01}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "custom_ping_statisics", "custom_ping_statisics\custom_ping_statisics.pyproj", "{A6B9375C-F1E1-454C-87C7-349637C4C8BF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DEB7D9DD-AAE0-4F70-97FA-C80C81CDE8B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEB7D9DD-AAE0-4F70-97FA-C80C81CDE8B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3C05770-5E0F-4450-A316-4E34FBB86B01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3C05770-5E0F-4450-A316-4E34FBB86B01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6B9375C-F1E1-454C-87C7-349637C4C8BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6B9375C-F1E1-454C-87C7-349637C4C8BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {13D7B2E1-8CB5-4689-AF7B-AD910B32839A}
+	EndGlobalSection
+EndGlobal
