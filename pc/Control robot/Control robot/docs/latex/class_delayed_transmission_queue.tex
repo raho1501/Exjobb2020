@@ -1,0 +1,87 @@
+\hypertarget{class_delayed_transmission_queue}{}\doxysection{Delayed\+Transmission\+Queue Class Reference}
+\label{class_delayed_transmission_queue}\index{DelayedTransmissionQueue@{DelayedTransmissionQueue}}
+
+
+\mbox{\hyperlink{class_delayed_transmission_queue}{Delayed\+Transmission\+Queue}} class.  
+
+
+
+
+{\ttfamily \#include $<$Delayed\+Transmission\+Queue.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_delayed_transmission_queue_a73975ee0772c5eec1cfaba76f0953bcb}{Delayed\+Transmission\+Queue}} (double init\+\_\+delay, \mbox{\hyperlink{struct_address}{Address}} socket\+\_\+address)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_delayed_transmission_queue_ae1fc13b31874cf14351a162dbb454978}\label{class_delayed_transmission_queue_ae1fc13b31874cf14351a162dbb454978}} 
+void \mbox{\hyperlink{class_delayed_transmission_queue_ae1fc13b31874cf14351a162dbb454978}{enqueue}} (std\+::string outgoing\+\_\+message)
+\begin{DoxyCompactList}\small\item\em enqueue message to the back of the queue \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_delayed_transmission_queue_aa48fa03d26735a3d0f1676ce1d6f4ec9}{transmitt}} ()
+\begin{DoxyCompactList}\small\item\em transmitt function that sends the message at the front of the queue, returns if transmission was performed or not \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_delayed_transmission_queue_a9528a57052b2af90f9147aa412c18e44}{set\+\_\+delay}} (double new\+\_\+delay)
+\begin{DoxyCompactList}\small\item\em set delay of queue \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_delayed_transmission_queue_a837d66b4db5543279851b82b6351fbf7}\label{class_delayed_transmission_queue_a837d66b4db5543279851b82b6351fbf7}} 
+void \mbox{\hyperlink{class_delayed_transmission_queue_a837d66b4db5543279851b82b6351fbf7}{clear\+\_\+queue}} ()
+\begin{DoxyCompactList}\small\item\em clear\+\_\+queue \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_delayed_transmission_queue_abef5695a6fc1f52cf2408e5f1210de37}\label{class_delayed_transmission_queue_abef5695a6fc1f52cf2408e5f1210de37}} 
+\mbox{\hyperlink{class_delayed_transmission_queue_abef5695a6fc1f52cf2408e5f1210de37}{$\sim$\+Delayed\+Transmission\+Queue}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_delayed_transmission_queue}{Delayed\+Transmission\+Queue}} class. 
+
+a queue that will not dequeue a message and send it to the network unless a set time is passed. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_delayed_transmission_queue_a73975ee0772c5eec1cfaba76f0953bcb}\label{class_delayed_transmission_queue_a73975ee0772c5eec1cfaba76f0953bcb}} 
+\index{DelayedTransmissionQueue@{DelayedTransmissionQueue}!DelayedTransmissionQueue@{DelayedTransmissionQueue}}
+\index{DelayedTransmissionQueue@{DelayedTransmissionQueue}!DelayedTransmissionQueue@{DelayedTransmissionQueue}}
+\doxysubsubsection{\texorpdfstring{DelayedTransmissionQueue()}{DelayedTransmissionQueue()}}
+{\footnotesize\ttfamily Delayed\+Transmission\+Queue\+::\+Delayed\+Transmission\+Queue (\begin{DoxyParamCaption}\item[{double}]{init\+\_\+delay,  }\item[{\mbox{\hyperlink{struct_address}{Address}}}]{socket\+\_\+address }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor. 
+
+Takes 
+\begin{DoxyParams}{Parameters}
+{\em init\+\_\+delay} & is the delay in seconds. \\
+\hline
+{\em socket\+\_\+address} & is a \mbox{\hyperlink{struct_address}{Address}} to send to. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_delayed_transmission_queue_a9528a57052b2af90f9147aa412c18e44}\label{class_delayed_transmission_queue_a9528a57052b2af90f9147aa412c18e44}} 
+\index{DelayedTransmissionQueue@{DelayedTransmissionQueue}!set\_delay@{set\_delay}}
+\index{set\_delay@{set\_delay}!DelayedTransmissionQueue@{DelayedTransmissionQueue}}
+\doxysubsubsection{\texorpdfstring{set\_delay()}{set\_delay()}}
+{\footnotesize\ttfamily void Delayed\+Transmission\+Queue\+::set\+\_\+delay (\begin{DoxyParamCaption}\item[{double}]{new\+\_\+delay }\end{DoxyParamCaption})}
+
+
+
+set delay of queue 
+
+The
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+delay} & is in unit seconds \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_delayed_transmission_queue_aa48fa03d26735a3d0f1676ce1d6f4ec9}\label{class_delayed_transmission_queue_aa48fa03d26735a3d0f1676ce1d6f4ec9}} 
+\index{DelayedTransmissionQueue@{DelayedTransmissionQueue}!transmitt@{transmitt}}
+\index{transmitt@{transmitt}!DelayedTransmissionQueue@{DelayedTransmissionQueue}}
+\doxysubsubsection{\texorpdfstring{transmitt()}{transmitt()}}
+{\footnotesize\ttfamily bool Delayed\+Transmission\+Queue\+::transmitt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+transmitt function that sends the message at the front of the queue, returns if transmission was performed or not 
+
+Function performs a check if a set time has passed. If true then it will send the first message and return true. If the set time has not passed then no transmisson of message is performed and a false is returned. Check is done by private function. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Delayed\+Transmission\+Queue.\+h\end{DoxyCompactItemize}

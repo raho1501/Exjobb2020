@@ -1,0 +1,77 @@
+\hypertarget{class_controller}{}\doxysection{Controller Class Reference}
+\label{class_controller}\index{Controller@{Controller}}
+
+
+The controller class.  
+
+
+
+
+{\ttfamily \#include $<$Controller.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_controller_a1718c72cd00043c4203a76d8177ae926}{Controller}} (int index)
+\begin{DoxyCompactList}\small\item\em The constructor. \end{DoxyCompactList}\item 
+X\+I\+N\+P\+U\+T\+\_\+\+S\+T\+A\+TE \mbox{\hyperlink{class_controller_a590a52fd1c496cab0aa0a2c22b022bea}{get\+\_\+controller\+\_\+status}} ()
+\begin{DoxyCompactList}\small\item\em Getter for controller status. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_controller_ac1a75142220142b2e9c021fc16b3a51a}{is\+\_\+connected}} ()
+\begin{DoxyCompactList}\small\item\em Check if controller is connected. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_controller_a0ab87934c4f7a266cfdb86e0f36bc1b5}\label{class_controller_a0ab87934c4f7a266cfdb86e0f36bc1b5}} 
+\mbox{\hyperlink{class_controller_a0ab87934c4f7a266cfdb86e0f36bc1b5}{$\sim$\+Controller}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The controller class. 
+
+It uses the windows.\+h and xinput.\+h to read user input from the controller. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_controller_a1718c72cd00043c4203a76d8177ae926}\label{class_controller_a1718c72cd00043c4203a76d8177ae926}} 
+\index{Controller@{Controller}!Controller@{Controller}}
+\index{Controller@{Controller}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{Controller()}{Controller()}}
+{\footnotesize\ttfamily Controller\+::\+Controller (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+The constructor. 
+
+It takes the index of the controller as arg. The index corresponds to the light on the controller logo. However since the lights on the controller are in the 1-\/4 range, it need to be converted to a 0-\/3 range since that what the library use \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_controller_a1718c72cd00043c4203a76d8177ae926}{Controller()}} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em index} & the controller index. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_controller_a590a52fd1c496cab0aa0a2c22b022bea}\label{class_controller_a590a52fd1c496cab0aa0a2c22b022bea}} 
+\index{Controller@{Controller}!get\_controller\_status@{get\_controller\_status}}
+\index{get\_controller\_status@{get\_controller\_status}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{get\_controller\_status()}{get\_controller\_status()}}
+{\footnotesize\ttfamily X\+I\+N\+P\+U\+T\+\_\+\+S\+T\+A\+TE Controller\+::get\+\_\+controller\+\_\+status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter for controller status. 
+
+returns X\+I\+N\+P\+U\+T\+\_\+\+S\+T\+A\+TE of controller \mbox{\Hypertarget{class_controller_ac1a75142220142b2e9c021fc16b3a51a}\label{class_controller_ac1a75142220142b2e9c021fc16b3a51a}} 
+\index{Controller@{Controller}!is\_connected@{is\_connected}}
+\index{is\_connected@{is\_connected}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{is\_connected()}{is\_connected()}}
+{\footnotesize\ttfamily bool Controller\+::is\+\_\+connected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check if controller is connected. 
+
+function to check if controller is connected. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Controller.\+h\end{DoxyCompactItemize}

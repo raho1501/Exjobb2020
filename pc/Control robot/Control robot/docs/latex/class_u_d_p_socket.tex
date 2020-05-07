@@ -1,0 +1,175 @@
+\hypertarget{class_u_d_p_socket}{}\doxysection{U\+D\+P\+Socket Class Reference}
+\label{class_u_d_p_socket}\index{UDPSocket@{UDPSocket}}
+
+
+\mbox{\hyperlink{class_u_d_p_socket}{U\+D\+P\+Socket}} class, to send messages to the network.  
+
+
+
+
+{\ttfamily \#include $<$U\+D\+P\+Socket.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_u_d_p_socket_ad38a95b87c3a7f9be4aa15f4264a77fe}{U\+D\+P\+Socket}} (int type)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_d_p_socket_adb1a5254938e5acf5d44ff7a347e9f0a}\label{class_u_d_p_socket_adb1a5254938e5acf5d44ff7a347e9f0a}} 
+\mbox{\hyperlink{class_u_d_p_socket_adb1a5254938e5acf5d44ff7a347e9f0a}{$\sim$\+U\+D\+P\+Socket}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_u_d_p_socket_a8d8a7d6de4a19d78cd44d137795dcec2}{connect}} (const \mbox{\hyperlink{struct_address}{Address}} \&address)
+\begin{DoxyCompactList}\small\item\em Connect function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_u_d_p_socket_a46960c14990f3531f9719111a075c227}{bind}} (const \mbox{\hyperlink{struct_address}{Address}} \&address)
+\begin{DoxyCompactList}\small\item\em Bind function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_u_d_p_socket_a2f40e4e9128283ebbb13b094969019e5}{listen}} ()
+\begin{DoxyCompactList}\small\item\em Listen function. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_u_d_p_socket}{U\+D\+P\+Socket}} $\ast$ \mbox{\hyperlink{class_u_d_p_socket_aa8910153208ab7b1a1b9fc4675fbdf9d}{accept}} ()
+\begin{DoxyCompactList}\small\item\em accept function \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_u_d_p_socket_a40ccead128fc9bb697159c34daad1f9a}{send\+To}} (const std\+::string \&msg, const \mbox{\hyperlink{struct_address}{Address}} \&address)
+\begin{DoxyCompactList}\small\item\em send\+To function, send U\+DP packet to address \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_u_d_p_socket_aeddda63b3780bc26c1d90de102681ebe}{send\+To}} (const char $\ast$msg, int msg\+Size, const \mbox{\hyperlink{struct_address}{Address}} \&address)
+\begin{DoxyCompactList}\small\item\em send\+To function, send U\+DP packet to address \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_u_d_p_socket_a7c52f5b2ac060473cada564ed5fece1b}{receive\+From}} (char $\ast$buf, int buf\+Size, \mbox{\hyperlink{struct_address}{Address}} \&address)
+\begin{DoxyCompactList}\small\item\em receive\+From function, accepts message from provided address \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_d_p_socket_a5a56b98fffff6a585f04c1850812e186}\label{class_u_d_p_socket_a5a56b98fffff6a585f04c1850812e186}} 
+void \mbox{\hyperlink{class_u_d_p_socket_a5a56b98fffff6a585f04c1850812e186}{shutdown}} ()
+\begin{DoxyCompactList}\small\item\em shutdown the socket \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_d_p_socket_adf03e1406e434b6a31a673dfbc18a132}\label{class_u_d_p_socket_adf03e1406e434b6a31a673dfbc18a132}} 
+void \mbox{\hyperlink{class_u_d_p_socket_adf03e1406e434b6a31a673dfbc18a132}{close}} ()
+\begin{DoxyCompactList}\small\item\em close the socket \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_d_p_socket_a8c2b50a8313cfb00a1ca0ff2c7db1fdd}\label{class_u_d_p_socket_a8c2b50a8313cfb00a1ca0ff2c7db1fdd}} 
+\mbox{\hyperlink{struct_address}{Address}} \mbox{\hyperlink{class_u_d_p_socket_a8c2b50a8313cfb00a1ca0ff2c7db1fdd}{get\+Address}} ()
+\begin{DoxyCompactList}\small\item\em get address from message \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_u_d_p_socket}{U\+D\+P\+Socket}} class, to send messages to the network. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_u_d_p_socket_ad38a95b87c3a7f9be4aa15f4264a77fe}\label{class_u_d_p_socket_ad38a95b87c3a7f9be4aa15f4264a77fe}} 
+\index{UDPSocket@{UDPSocket}!UDPSocket@{UDPSocket}}
+\index{UDPSocket@{UDPSocket}!UDPSocket@{UDPSocket}}
+\doxysubsubsection{\texorpdfstring{UDPSocket()}{UDPSocket()}}
+{\footnotesize\ttfamily U\+D\+P\+Socket\+::\+U\+D\+P\+Socket (\begin{DoxyParamCaption}\item[{int}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & the socket type, either S\+O\+C\+K\+\_\+\+S\+T\+R\+E\+AM OR S\+O\+C\+K\+\_\+\+D\+G\+R\+AM. Use the latter one. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_u_d_p_socket_aa8910153208ab7b1a1b9fc4675fbdf9d}\label{class_u_d_p_socket_aa8910153208ab7b1a1b9fc4675fbdf9d}} 
+\index{UDPSocket@{UDPSocket}!accept@{accept}}
+\index{accept@{accept}!UDPSocket@{UDPSocket}}
+\doxysubsubsection{\texorpdfstring{accept()}{accept()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_u_d_p_socket}{U\+D\+P\+Socket}}$\ast$ U\+D\+P\+Socket\+::accept (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+accept function 
+
+Used when in T\+CP mode, not needed in this context. Only included for convienience \mbox{\Hypertarget{class_u_d_p_socket_a46960c14990f3531f9719111a075c227}\label{class_u_d_p_socket_a46960c14990f3531f9719111a075c227}} 
+\index{UDPSocket@{UDPSocket}!bind@{bind}}
+\index{bind@{bind}!UDPSocket@{UDPSocket}}
+\doxysubsubsection{\texorpdfstring{bind()}{bind()}}
+{\footnotesize\ttfamily void U\+D\+P\+Socket\+::bind (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_address}{Address}} \&}]{address }\end{DoxyParamCaption})}
+
+
+
+Bind function. 
+
+Used when in T\+CP mode, not needed in this context. Only included for convienience \mbox{\Hypertarget{class_u_d_p_socket_a8d8a7d6de4a19d78cd44d137795dcec2}\label{class_u_d_p_socket_a8d8a7d6de4a19d78cd44d137795dcec2}} 
+\index{UDPSocket@{UDPSocket}!connect@{connect}}
+\index{connect@{connect}!UDPSocket@{UDPSocket}}
+\doxysubsubsection{\texorpdfstring{connect()}{connect()}}
+{\footnotesize\ttfamily void U\+D\+P\+Socket\+::connect (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_address}{Address}} \&}]{address }\end{DoxyParamCaption})}
+
+
+
+Connect function. 
+
+Used when in T\+CP mode, not needed in this context. Only included for convienience \mbox{\Hypertarget{class_u_d_p_socket_a2f40e4e9128283ebbb13b094969019e5}\label{class_u_d_p_socket_a2f40e4e9128283ebbb13b094969019e5}} 
+\index{UDPSocket@{UDPSocket}!listen@{listen}}
+\index{listen@{listen}!UDPSocket@{UDPSocket}}
+\doxysubsubsection{\texorpdfstring{listen()}{listen()}}
+{\footnotesize\ttfamily void U\+D\+P\+Socket\+::listen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Listen function. 
+
+Used when in T\+CP mode, not needed in this context. Only included for convienience \mbox{\Hypertarget{class_u_d_p_socket_a7c52f5b2ac060473cada564ed5fece1b}\label{class_u_d_p_socket_a7c52f5b2ac060473cada564ed5fece1b}} 
+\index{UDPSocket@{UDPSocket}!receiveFrom@{receiveFrom}}
+\index{receiveFrom@{receiveFrom}!UDPSocket@{UDPSocket}}
+\doxysubsubsection{\texorpdfstring{receiveFrom()}{receiveFrom()}}
+{\footnotesize\ttfamily int U\+D\+P\+Socket\+::receive\+From (\begin{DoxyParamCaption}\item[{char $\ast$}]{buf,  }\item[{int}]{buf\+Size,  }\item[{\mbox{\hyperlink{struct_address}{Address}} \&}]{address }\end{DoxyParamCaption})}
+
+
+
+receive\+From function, accepts message from provided address 
+
+accepts a message from provided address and stores it in a provided char buffer 
+\begin{DoxyParams}{Parameters}
+{\em buf} & the buffer to store the received message \\
+\hline
+{\em buf\+Size} & the size of the buffer \\
+\hline
+{\em address} & the address to receive the message from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the length of the received message. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_u_d_p_socket_aeddda63b3780bc26c1d90de102681ebe}\label{class_u_d_p_socket_aeddda63b3780bc26c1d90de102681ebe}} 
+\index{UDPSocket@{UDPSocket}!sendTo@{sendTo}}
+\index{sendTo@{sendTo}!UDPSocket@{UDPSocket}}
+\doxysubsubsection{\texorpdfstring{sendTo()}{sendTo()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int U\+D\+P\+Socket\+::send\+To (\begin{DoxyParamCaption}\item[{const char $\ast$}]{msg,  }\item[{int}]{msg\+Size,  }\item[{const \mbox{\hyperlink{struct_address}{Address}} \&}]{address }\end{DoxyParamCaption})}
+
+
+
+send\+To function, send U\+DP packet to address 
+
+Send message to socket address. 
+\begin{DoxyParams}{Parameters}
+{\em msg} & char array message to send \\
+\hline
+{\em msg\+Size} & length of the message to send \\
+\hline
+{\em address} & the address to send the message to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of bytes sent 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_u_d_p_socket_a40ccead128fc9bb697159c34daad1f9a}\label{class_u_d_p_socket_a40ccead128fc9bb697159c34daad1f9a}} 
+\index{UDPSocket@{UDPSocket}!sendTo@{sendTo}}
+\index{sendTo@{sendTo}!UDPSocket@{UDPSocket}}
+\doxysubsubsection{\texorpdfstring{sendTo()}{sendTo()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily int U\+D\+P\+Socket\+::send\+To (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{msg,  }\item[{const \mbox{\hyperlink{struct_address}{Address}} \&}]{address }\end{DoxyParamCaption})}
+
+
+
+send\+To function, send U\+DP packet to address 
+
+Send message to socket address. 
+\begin{DoxyParams}{Parameters}
+{\em msg} & string message to send \\
+\hline
+{\em address} & the address to send the message to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of bytes sent 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+U\+D\+P\+Socket.\+h\end{DoxyCompactItemize}
